@@ -1,11 +1,13 @@
-RealImage Challenge 2016 — Territory Authorization Engine (Go)
+## RealImage Challenge 2016 — Territory Authorization Engine (Go)
 
 This repository contains a clean, production-style implementation of the RealImage 2016 backend task.
 The goal is to determine whether a distributor is authorized to exhibit a film in a given region, based on hierarchical include/exclude rules.
 
 The solution uses Go with a focus on clean architecture, modular components, and fully testable business logic.
 
-1. Problem Overview
+---
+
+## 1. Problem Overview
 
 A distributor receives permission through:
 
@@ -31,37 +33,46 @@ Queries:
 D1 KARNATAKA-INDIA → NO
 D1 TAMILNADU-INDIA → YES
 
-2. Features
+--- 
 
-Parse regions in the format CITY-STATE-COUNTRY
+## 2. Features
 
-In-memory geographical repository
+* Parse regions in the format CITY-STATE-COUNTRY
 
-Distributor permission model (include + exclude)
+* In-memory geographical repository
 
-Deterministic authorization engine
+* Distributor permission model (include + exclude)
 
-Clean separation of modules
+* Deterministic authorization engine
 
-CLI interface with sample input
+* Clean separation of modules
 
-Unit tests (parser, permissions, checker)
+* CLI interface with sample input
 
-3. Architecture
+* Unit tests (parser, permissions, checker)
+
+---
+
+## 3. Architecture
 
 The system is divided into independent modules:
 
-geo/ – region model, parsing, hierarchy
+* geo/ – region model, parsing, hierarchy
 
-permissions/ – include/exclude evaluation engine
+* permissions/ – include/exclude evaluation engine
 
-distributor/ – distributor registry
+* distributor/ – distributor registry
 
-cmd/service/ – CLI entrypoint
+* cmd/service/ – CLI entrypoint
 
-Architecture Diagram
+## Architecture Diagram
 
-4. Folder Structure
+![Architecture Diagram](docs/architecture.png)
+
+
+---
+
+## 4. Folder Structure
 realimage-challenge-2016/
 │
 ├── cmd/
@@ -105,8 +116,10 @@ realimage-challenge-2016/
 ├── go.mod
 └── README.md
 
-5. How the Engine Works
-Step 1 — Load Permissions
+---
+
+## 5. How the Engine Works
+* Step 1 — Load Permissions
 
 Each distributor may define:
 
@@ -120,7 +133,7 @@ Internally stored as:
 
 []Region excludes
 
-Step 2 — Parse Query
+* Step 2 — Parse Query
 
 Format:
 
@@ -131,7 +144,7 @@ Example:
 
 D1 KARNATAKA-INDIA
 
-Step 3 — Evaluate
+* Step 3 — Evaluate
 
 Check if region matches the include list
 
@@ -149,7 +162,9 @@ Output:
 
 YES / NO
 
-6. Running the Project
+---
+
+## 6. Running the Project
 Build
 go build -o auth ./cmd/service
 
@@ -159,7 +174,9 @@ Run
 Using the script (macOS/Linux)
 sh script/run.sh
 
-7. Running Tests
+---
+
+## 7. Running Tests
 go test ./...
 
 
@@ -171,23 +188,27 @@ Permission logic
 
 Authorization checker
 
-8. Why This Implementation Is Strong
+---
 
-Clean, readable Go code
+## 8. Why This Implementation Is Strong
 
-Modular architecture
+* Clean, readable Go code
 
-Deterministic and testable business logic
+* Modular architecture
 
-Zero unnecessary dependencies
+* Deterministic and testable business logic
 
-Simple to extend and modify
+* Zero unnecessary dependencies
 
-Easy for reviewers to evaluate
+* Simple to extend and modify
 
-Includes documentation and architecture diagram
+* Easy for reviewers to evaluate
 
-9. Sample Input/Output
+* Includes documentation and architecture diagram
+
+---
+
+## 9. Sample Input/Output
 permissions.txt
 D1
 INCLUDE: INDIA
@@ -201,7 +222,9 @@ Output
 NO
 YES
 
-10. License
+---
+
+## 10. License
 
 Submitted as part of the RealImage Challenge 2016.
 May be used or extended for educational and interview purposes.
